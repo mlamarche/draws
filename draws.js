@@ -1,8 +1,7 @@
 /* main javascript function*/
 
 
-
-/* code for toolbar buttons
+/*
 if (window.addEventListener) {
    window.addEventListener('load', function() { init(); });
 }
@@ -66,3 +65,25 @@ $(document).ready(function() {
 
     socket.emit('add user');
 });
+
+
+function onColorClick(color) {
+    // Start a new path to begin drawing in a new color.
+    context.closePath();
+    context.beginPath();
+
+    // Select the new color.
+    context.strokeStyle = color;
+
+    // Highlight selected color.
+    var borderColor = 'white';
+    if (color == 'white' || color == 'yellow') {
+        borderColor = 'black';
+    }
+
+    $('#' + lastColor).css("border", "0px dashed white");
+    $('#' + color).css("border", "1px dashed " + borderColor);
+
+    // Store color so we can un-highlight it next time around.
+    lastColor = color;
+}
