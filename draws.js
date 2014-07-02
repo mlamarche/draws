@@ -19,14 +19,8 @@ function init() {
     canvas = $('#imageView').get(0);
     context = canvas.getContext('2d');
 
-    var img = document.getElementById('http://i1252.photobucket.com/albums/hh570/mudzy2k6/Whiteboard_Background_zpsbba3bfab.png');
-    //or however you get a handle to the IMG
-    var w = img.clientWidth;
-    var h = img.clientHeight;
-    console.log("width:" + w + " and height:" + h)
-    // Auto-adjust canvas size to fit window.
-    canvas.width = w;
-    canvas.height = h;
+    canvas.width = "1000px";
+    canvas.height = "667px";
 
     canvas.addEventListener('mousemove', onMouseMove, false);
     canvas.addEventListener('click', onClick, false);
