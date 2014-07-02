@@ -23,3 +23,6 @@ io.on('connection', function(socket) {
         console.log("A user has disconnected");
     })
 });
+/*
+<img src="http://i1252.photobucket.com/albums/hh570/mudzy2k6/Whiteboard_Background_zpsbba3bfab.png">
+*/
