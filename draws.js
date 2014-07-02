@@ -1,4 +1,5 @@
 /* main javascript function*/
 $(document).ready(function() {
-    socket.emit('add user', username);
+    console.log("NOOOO");
+    socket.emit('add user');
 });
