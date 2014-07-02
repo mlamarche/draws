@@ -1,7 +1,6 @@
 /* main javascript function*/
 
 
-/*
 
 if (window.addEventListener) {
     window.addEventListener('load', function() {
@@ -16,13 +15,15 @@ var lastColor = 'black';
 var lastStampId = '';
 
 function init() {
-    canvas = $('#board').get(0);
+
+    canvas = $('#imageView').get(0);
     context = canvas.getContext('2d');
 
     var img = document.getElementById('http://i1252.photobucket.com/albums/hh570/mudzy2k6/Whiteboard_Background_zpsbba3bfab.png');
     //or however you get a handle to the IMG
     var w = img.clientWidth;
     var h = img.clientHeight;
+    console.log("width:" + w + " and height:" + h)
     // Auto-adjust canvas size to fit window.
     canvas.width = w;
     canvas.height = h;
@@ -33,6 +34,7 @@ function init() {
     // Add events for toolbar buttons.
     $('#red').get(0).addEventListener('click', function(e) {
         onColorClick(e.target.id);
+        console.log("I clicked " + e);
     }, false);
     $('#pink').get(0).addEventListener('click', function(e) {
         onColorClick(e.target.id);
@@ -64,21 +66,6 @@ function init() {
     $('#white').get(0).addEventListener('click', function(e) {
         onColorClick(e.target.id);
     }, false);
-    $('#cat').get(0).addEventListener('click', function(e) {
-        onStamp(e.target.id);
-    }, false);
-    $('#dragonfly').get(0).addEventListener('click', function(e) {
-        onStamp(e.target.id);
-    }, false);
-    $('#ladybug').get(0).addEventListener('click', function(e) {
-        onStamp(e.target.id);
-    }, false);
-    $('#heart').get(0).addEventListener('click', function(e) {
-        onStamp(e.target.id);
-    }, false);
-    $('#dog').get(0).addEventListener('click', function(e) {
-        onStamp(e.target.id);
-    }, false);
     $('#fill').get(0).addEventListener('click', function(e) {
         onFill();
     }, false);
@@ -90,30 +77,30 @@ function init() {
         console.log("NOOOO");
         var socket = io();
 
-    socket.emit('add user');
-});
-
-
-function onColorClick(color) {
-    // Start a new path to begin drawing in a new color.
-    context.closePath();
-    context.beginPath();
-
-    // Select the new color.
-    context.strokeStyle = color;
-
-    // Highlight selected color.
-    var borderColor = 'white';
-    if (color == 'white' || color == 'yellow') {
-        borderColor = 'black';
-    }
-
-    $('#' + lastColor).css("border", "0px dashed white");
-    $('#' + color).css("border", "1px dashed " + borderColor);
-
-    // Store color so we can un-highlight it next time around.
-    lastColor = color;
-}
-
         socket.emit('add user');
     });
+
+
+    function onColorClick(color) {
+        // Start a new path to begin drawing in a new color.
+        context.closePath();
+        context.beginPath();
+
+        // Select the new color.
+        context.strokeStyle = color;
+
+        // Highlight selected color.
+        var borderColor = 'white';
+        if (color == 'white' || color == 'yellow') {
+            borderColor = 'black';
+        }
+
+        $('#' + lastColor).css("border", "0px dashed white");
+        $('#' + color).css("border", "1px dashed " + borderColor);
+
+        // Store color so we can un-highlight it next time around.
+        lastColor = color;
+    }
+
+    socket.emit('add user');
+};
