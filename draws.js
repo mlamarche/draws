@@ -59,3 +59,10 @@ function init() {
      onStamp(e.target.id); }, false);
     $('#fill').get(0).addEventListener('click', function(e) { onFill(); }, false);
     $('#save').get(0).addEventListener('click', function(e) { onSave(); }, false);
+
+$(document).ready(function() {
+    console.log("NOOOO");
+    var socket = io();
+
+    socket.emit('add user');
+});
